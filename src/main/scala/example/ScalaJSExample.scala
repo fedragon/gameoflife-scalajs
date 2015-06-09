@@ -2,6 +2,7 @@ package example
 import scala.scalajs.js.annotation.JSExport
 import org.scalajs.dom
 import org.scalajs.dom.html
+import scala.util.Random
 
 @JSExport
 object GameOfLife {
@@ -9,7 +10,7 @@ object GameOfLife {
   val Dead = false
 
   val BoardSize = 10
-  val CellSize = 100
+  val CellSize = 50
 
   case class Cell(x: Int, y: Int, alive: Boolean) {
     def willSurvive(neighbours: Seq[Cell]) = {
@@ -61,7 +62,14 @@ object GameOfLife {
         cell.evolve(neighbours)
     }
 
-  def generateBoard(aliveCells: Seq[(Int, Int)]): Seq[Cell] = {
+  def generateBoard: Seq[Cell] = {
+    def randomCells(i: Int, acc: Seq[(Int, Int)]): Seq[(Int, Int)] =
+      if(i == 0) acc
+      else randomCells(i - 1, (Random.nextInt(BoardSize), Random.nextInt(BoardSize)) +: acc)
+
+    val aliveCells = randomCells(BoardSize + Random.nextInt(BoardSize * 2), Nil)
+    println(s"generated alive cells: $aliveCells")
+
     for {
       i <- 0 until BoardSize
       j <- 0 until BoardSize
@@ -78,17 +86,17 @@ object GameOfLife {
     canvas.width = BoardSize * CellSize
     canvas.height = BoardSize * CellSize
 
-    var seed = generateBoard(Seq((1, 0), (1, 1), (1, 2), (0, 1), (2, 1)))
+    var seed = generateBoard
     println(s"seed: $seed")
 
-    ctx.fillStyle = "black"
+    ctx.fillStyle = "white"
     ctx.fillRect(0, 0, CellSize * BoardSize, CellSize * BoardSize)
 
     def run = {
       seed.zipWithIndex.map { case (cell, index) =>
         val x = cell.x * CellSize
         val y = cell.y * CellSize
-        val style = if (cell.alive) "green" else "red"
+        val style = if (cell.alive) "green" else "white"
 
         ctx.fillStyle = style
         ctx.fillRect(x, y, CellSize, CellSize)
@@ -97,6 +105,6 @@ object GameOfLife {
       seed = tick(seed)
     }
 
-    dom.setInterval(() => run, 1000)
+    dom.setInterval(() => run, 500)
   }
 }
