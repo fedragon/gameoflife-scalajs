@@ -7,7 +7,7 @@ import scala.util.Random
 
 @JSExport
 object GameOfLife {
-  val BoardSize = 10
+  val BoardSize = 30
   val CellSize = 30
 
   case class Cell(x: Int, y: Int, alive: Boolean) {
@@ -27,31 +27,19 @@ object GameOfLife {
       if(reproduces(neighbours)) copy(alive = true)
       else if(survives(neighbours)) this
       else copy(alive = false)
-
-    def move(dx: Int, dy: Int) = (x + dx, y + dy)
-
-    def possibleNeighbours = {
-      move(-1, -1) :: move(-1, 0) :: move(-1, 1) ::
-      move(0, -1) :: move(0, 1) ::
-      move(1, -1) :: move(1, 0) :: move(1, 1) ::
-      Nil
-    }
   }
 
   def neighboursOf(cell: Cell, cells: Seq[Cell]) = {
-    val indexes = cell.possibleNeighbours.filter {
-      case (x, y) => x >= 0 && x < BoardSize && y >= 0 && y < BoardSize
-    }
     cells.filter {
-      case Cell(x, y, _) => indexes.contains((x, y))
+      case Cell(x, y, _) =>
+        Math.abs(cell.x - x) <= 1 && Math.abs(cell.y - y) <= 1
     }
   }
 
   def tick(cells: Seq[Cell]) =
-    cells.zipWithIndex.map {
-      case (cell, index) =>
-        val neighbours = neighboursOf(cell, cells)
-        cell.evolve(neighbours)
+    cells.map { cell =>
+      val neighbours = neighboursOf(cell, cells)
+      cell.evolve(neighbours)
     }
 
   def generateBoard: Seq[Cell] = {
