@@ -10,12 +10,15 @@ version := "0.1-SNAPSHOT"
 
 scalaVersion := "2.11.5"
 
-libraryDependencies ++= Seq(
-  "org.scala-js" %%% "scalajs-dom" % "0.8.0"
-)
+scalaJSStage in Global := FastOptStage
+
+testFrameworks += new TestFramework("utest.runner.Framework")
 
 bootSnippet := "com.github.fedragon.gameoflife.GameOfLife().main(document.getElementById('canvas'));"
 
 updateBrowsers <<= updateBrowsers.triggeredBy(fastOptJS in Compile)
 
-scalaJSStage in Global := FastOptStage
+libraryDependencies ++= Seq(
+  "org.scala-js" %%% "scalajs-dom" % "0.8.0",
+  "com.lihaoyi"  %%% "utest" % "0.3.1"
+)
