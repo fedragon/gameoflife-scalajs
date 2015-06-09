@@ -12,42 +12,36 @@ object GameOfLife {
 
   case class Cell(x: Int, y: Int, alive: Boolean) {
     def survives(neighbours: Seq[Cell]) = {
-      val aliveNeighbours = neighbours.filter(_.alive)
-      alive && (aliveNeighbours.size == 2 || aliveNeighbours.size == 3)
+      val aliveNeighbours = neighbours.count(_.alive)
+      alive && (aliveNeighbours == 2 || aliveNeighbours == 3)
     }
 
     def dies(neighbours: Seq[Cell]) = {
-      val aliveNeighbours = neighbours.filter(_.alive)
-      alive && (aliveNeighbours.size < 2 || aliveNeighbours.size > 3)
+      val aliveNeighbours = neighbours.count(_.alive)
+      alive && (aliveNeighbours < 2 || aliveNeighbours > 3)
     }
 
-    def reproduces(neighbours: Seq[Cell]) = {
-      val aliveNeighbours = neighbours.filter(_.alive)
-      !alive && aliveNeighbours.size == 3
-    }
+    def reproduces(neighbours: Seq[Cell]) = !alive && neighbours.count(_.alive) == 3
 
     def evolve(neighbours: Seq[Cell]) =
       if(reproduces(neighbours)) copy(alive = true)
       else if(survives(neighbours)) this
       else copy(alive = false)
 
-      def move(dx: Int, dy: Int) = (x + dx, y + dy)
+    def move(dx: Int, dy: Int) = (x + dx, y + dy)
 
-      def possibleNeighbours = {
-        move(-1, -1) :: move(-1, 0) :: move(-1, 1) ::
-        move(0, -1) :: move(0, 1) ::
-        move(1, -1) :: move(1, 0) :: move(1, 1) ::
-        Nil
-      }
-  }
-
-  def exists(xy: (Int, Int)) = {
-    val (x, y) = xy
-    x >= 0 && x < BoardSize && y >=0 && y < BoardSize
+    def possibleNeighbours = {
+      move(-1, -1) :: move(-1, 0) :: move(-1, 1) ::
+      move(0, -1) :: move(0, 1) ::
+      move(1, -1) :: move(1, 0) :: move(1, 1) ::
+      Nil
+    }
   }
 
   def neighboursOf(cell: Cell, cells: Seq[Cell]) = {
-    val indexes = cell.possibleNeighbours.filter(exists)
+    val indexes = cell.possibleNeighbours.filter {
+      case (x, y) => x >= 0 && x < BoardSize && y >= 0 && y < BoardSize
+    }
     cells.filter {
       case Cell(x, y, _) => indexes.contains((x, y))
     }
@@ -61,11 +55,8 @@ object GameOfLife {
     }
 
   def generateBoard: Seq[Cell] = {
-    def randomCells(i: Int, acc: Seq[(Int, Int)]): Seq[(Int, Int)] =
-      if(i == 0) acc
-      else randomCells(i - 1, (Random.nextInt(BoardSize), Random.nextInt(BoardSize)) +: acc)
+    val aliveCells = List.fill(BoardSize + Random.nextInt(BoardSize * 2))((Random.nextInt(BoardSize), Random.nextInt(BoardSize)))
 
-    val aliveCells = randomCells(BoardSize + Random.nextInt(BoardSize * 2), Nil)
     println(s"generated alive cells: $aliveCells")
 
     for {
