@@ -4,7 +4,7 @@ enablePlugins(ScalaJSPlugin)
 
 workbenchSettings
 
-name := "Example"
+name := "gameoflife"
 
 version := "0.1-SNAPSHOT"
 
@@ -14,7 +14,7 @@ libraryDependencies ++= Seq(
   "org.scala-js" %%% "scalajs-dom" % "0.8.0"
 )
 
-bootSnippet := "example.GameOfLife().main(document.getElementById('canvas'));"
+bootSnippet := "com.github.fedragon.gameoflife.GameOfLife().main(document.getElementById('canvas'));"
 
 updateBrowsers <<= updateBrowsers.triggeredBy(fastOptJS in Compile)
 

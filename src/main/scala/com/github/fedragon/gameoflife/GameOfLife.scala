@@ -1,4 +1,5 @@
-package example
+package com.github.fedragon.gameoflife
+
 import scala.scalajs.js.annotation.JSExport
 import org.scalajs.dom
 import org.scalajs.dom.html
@@ -6,32 +7,29 @@ import scala.util.Random
 
 @JSExport
 object GameOfLife {
-  val Alive = true
-  val Dead = false
-
   val BoardSize = 10
-  val CellSize = 50
+  val CellSize = 30
 
   case class Cell(x: Int, y: Int, alive: Boolean) {
-    def willSurvive(neighbours: Seq[Cell]) = {
+    def survives(neighbours: Seq[Cell]) = {
       val aliveNeighbours = neighbours.filter(_.alive)
       alive && (aliveNeighbours.size == 2 || aliveNeighbours.size == 3)
     }
 
-    def willDie(neighbours: Seq[Cell]) = {
+    def dies(neighbours: Seq[Cell]) = {
       val aliveNeighbours = neighbours.filter(_.alive)
       alive && (aliveNeighbours.size < 2 || aliveNeighbours.size > 3)
     }
 
-    def willReproduce(neighbours: Seq[Cell]) = {
+    def reproduces(neighbours: Seq[Cell]) = {
       val aliveNeighbours = neighbours.filter(_.alive)
       !alive && aliveNeighbours.size == 3
     }
 
     def evolve(neighbours: Seq[Cell]) =
-      if(willReproduce(neighbours)) copy(alive = Alive)
-      else if(willSurvive(neighbours)) this
-      else copy(alive = Dead)
+      if(reproduces(neighbours)) copy(alive = true)
+      else if(survives(neighbours)) this
+      else copy(alive = false)
 
       def move(dx: Int, dy: Int) = (x + dx, y + dy)
 
@@ -80,14 +78,12 @@ object GameOfLife {
 
   @JSExport
   def main(canvas: html.Canvas): Unit = {
-    val ctx = canvas.getContext("2d")
-                    .asInstanceOf[dom.CanvasRenderingContext2D]
+    val ctx = canvas.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D]
 
     canvas.width = BoardSize * CellSize
     canvas.height = BoardSize * CellSize
 
     var seed = generateBoard
-    println(s"seed: $seed")
 
     ctx.fillStyle = "white"
     ctx.fillRect(0, 0, CellSize * BoardSize, CellSize * BoardSize)
@@ -96,7 +92,7 @@ object GameOfLife {
       seed.zipWithIndex.map { case (cell, index) =>
         val x = cell.x * CellSize
         val y = cell.y * CellSize
-        val style = if (cell.alive) "green" else "white"
+        val style = if (cell.alive) "blue" else "white"
 
         ctx.fillStyle = style
         ctx.fillRect(x, y, CellSize, CellSize)
