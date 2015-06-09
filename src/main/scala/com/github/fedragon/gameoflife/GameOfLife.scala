@@ -30,8 +30,8 @@ object GameOfLife {
 
   def neighboursOf(cell: Cell, cells: Seq[Cell]) =
     cells.filter {
-      case Cell(x, y, _) =>
-        Math.abs(cell.x - x) <= 1 && Math.abs(cell.y - y) <= 1
+      case other @ Cell(x, y, _) =>
+        other != cell && Math.abs(cell.x - x) <= 1 && Math.abs(cell.y - y) <= 1
     }
 
   def tick(cells: Seq[Cell]) =
@@ -42,17 +42,17 @@ object GameOfLife {
 
   def generateBoard: Seq[Cell] = {
     val n = BoardSize * 2 + Random.nextInt(BoardSize * 2)
-    val aliveCells = Seq.fill(n)(
+    val alive = Seq.fill(n)(
       (Random.nextInt(BoardSize), Random.nextInt(BoardSize))
     ).distinct
 
-    println(s"generated ${aliveCells.size} alive cells: $aliveCells")
+    println(s"generated ${alive.size} alive cells: $alive")
 
     for {
       i <- 0 until BoardSize
       j <- 0 until BoardSize
     } yield {
-      Cell(i, j, aliveCells.contains((i, j)))
+      Cell(i, j, alive.contains((i, j)))
     }
   }
 

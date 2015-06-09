@@ -36,5 +36,11 @@ object GameOfLifeTest extends TestSuite {
         assert(subject.evolve(neighbours).alive == true)
       }
     }
+    "A generation should evolve"-{
+      val cells = Seq(Cell(0, 0, true), Cell(0, 1, true), Cell(1, 0, true), Cell(1, 1, true))
+      val nextGeneration = GameOfLife.tick(cells)
+
+      assert(nextGeneration.forall(_.alive))
+    }
   }
 }
