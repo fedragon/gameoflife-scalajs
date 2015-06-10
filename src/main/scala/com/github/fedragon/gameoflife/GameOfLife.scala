@@ -46,7 +46,7 @@ object GameOfLife {
       (Random.nextInt(BoardSize), Random.nextInt(BoardSize))
     ).distinct
 
-    println(s"generated ${alive.size} alive cells: $alive")
+    println(s"Generated ${alive.size} alive cells: $alive")
 
     for {
       i <- 0 until BoardSize
@@ -71,7 +71,7 @@ object GameOfLife {
     ctx.fillRect(0, 0, cellSize * BoardSize, cellSize * BoardSize)
 
     def run = {
-      seed.zipWithIndex.map { case (cell, index) =>
+      seed.map { cell =>
         val x = cell.x * cellSize
         val y = cell.y * cellSize
         val style = if (cell.alive) "blue" else "white"
