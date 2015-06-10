@@ -65,6 +65,7 @@ object GameOfLife {
     canvas.height = BoardSize * cellSize
 
     var seed = generateBoard
+    var generation = 0
 
     ctx.fillStyle = "white"
     ctx.fillRect(0, 0, cellSize * BoardSize, cellSize * BoardSize)
@@ -79,7 +80,12 @@ object GameOfLife {
         ctx.fillRect(x, y, cellSize, cellSize)
       }
 
+      ctx.font = "20px Georgia"
+      ctx.fillStyle = "darkred"
+      ctx.fillText(generation.toString, 0, cellSize / 2)
+
       seed = tick(seed)
+      generation = generation + 1
     }
 
     dom.setInterval(() => run, 500)
