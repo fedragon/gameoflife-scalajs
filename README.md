@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/amsterdam-scala/Sjs-HTML5Canvas-GameOfLive.svg?branch=master)](https://travis-ci.org/amsterdam-scala/Sjs-HTML5Canvas-GameOfLive)
+
 GameOfLifeFP
 ============
 [A live demo here](https://amsterdam-scala.github.io/Sjs-HTML5Canvas-GameOfLive/public/view/index.html)
