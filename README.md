@@ -1,8 +1,8 @@
 GameOfLifeFP
 ============
-[A live demo here](https://job-done.github.io/Sjs-HTML5Canvas-GameOfLive/public/views/index.html)
+[A live demo here](https://amsterdam-scala.github.io/Sjs-HTML5Canvas-GameOfLive/public/view/index.html)
 
-[The very core of the code can be found here](https://github.com/Job-done/Sjs-HTML5Canvas-GameOfLive/blob/master/src/main/scala-2.12/nl/amsscala/sjsgameoflive/LivingWorld.scala#L42-L76)
+[The very core of the code can be found here](https://github.com/amsterdam-scala/Sjs-HTML5Canvas-GameOfLive/blob/master/src/main/scala-2.12/nl/amsscala/sjsgameoflive/LivingWorld.scala#L42-L76)
 
 [Installation instructions here](#installation-instructions)
 
