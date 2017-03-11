@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/amsterdam-scala/Sjs-HTML5Canvas-GameOfLive.svg?branch=master)](https://travis-ci.org/amsterdam-scala/Sjs-HTML5Canvas-GameOfLive)
-<img src="https://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-semantics.png" width="99" height="32" alt="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, and Semantics" title="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, and Semantics"></a>
+<img src="https://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-semantics.png" width="99" height="32" alt="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, and Semantics" title="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, and Semantics">
 <img width="48" src="https://www.scala-js.org/assets/img/scala-js-logo.svg">
 [![Scala.js](https://www.scala-js.org/assets/badges/scalajs-0.6.14.svg)](https://www.scala-js.org)
 
@@ -12,6 +12,14 @@ GameOfLifeFP
 [Installation instructions here](#installation-instructions)
 
 [CI test report is here](https://travis-ci.org/amsterdam-scala/Sjs-HTML5Canvas-GameOfLive#L714-L738)
+
+Tests are done on the following patterns:
+
+
+|Blinker oscillator|Toad oscillator|
+|:---:|:---:|
+| <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Game_of_life_blinker.gif" width="100" height="100" alt="Blinker oscillator" title=""></img>| <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Game_of_life_toad.gif" width="100" height="100" alt="Toad oscillator" title="" ></img>|
+|Period = 2|Period = 2|
 
 #### Conway's Game of Life - Functional Programmed in Scala.js
 
