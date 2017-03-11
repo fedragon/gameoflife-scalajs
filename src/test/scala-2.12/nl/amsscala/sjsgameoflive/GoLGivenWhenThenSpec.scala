@@ -6,13 +6,13 @@ import org.scalatest.{FeatureSpec, GivenWhenThen}
 class GoLGivenWhenThenSpec extends FeatureSpec with GivenWhenThen {
 
   info("As a GoL tester")
-  info("I want to be test the tick function")
+  info("I want to test the tick function")
   info("The tick function populates the GoL world with a new generation")
 
   val ran = scala.util.Random
   val offsetPosition = Position(ran.nextInt(), ran.nextInt())
 
-  feature("Test blinker") {
+  feature("Test two-periods Oscillator") {
     scenario("test a Blinker Oscillator (period 2)") {
 
       Given("3 alive cell vertically")
@@ -28,7 +28,7 @@ class GoLGivenWhenThenSpec extends FeatureSpec with GivenWhenThen {
       assert(nextLivingWorld === LivingWorld(offsetPosition,
         threeCellVertically.map { case Position(x, y) => Position(y, x) } /*Transpose*/))
 
-      And("put back to the original vertical state")
+      And("finally put back to the original vertical state")
       assert(LivingWorld.tick(nextLivingWorld) === orgLivingWorld)
 
     }
@@ -46,7 +46,7 @@ class GoLGivenWhenThenSpec extends FeatureSpec with GivenWhenThen {
       Then("the group of cells has another morphology")
       assert(nextLivingWorld === LivingWorld(offsetPosition, (2, -1), (1, -2), (1, 1), (0, -2), (-1, 0), (0, 1)))
 
-      And("but should transforms back to its orginal shape")
+      And("but finally should transforms back to its orginal shape")
       assert(LivingWorld.tick(nextLivingWorld) === original6v)
 
 
@@ -62,7 +62,7 @@ class GoLGivenWhenThenSpec extends FeatureSpec with GivenWhenThen {
       Then("the group of cells has another morphology")
       assert(nextLivingWorldH === LivingWorld(offsetPosition, (-2, 0), (-2, 1), (1, 1), (-1, 2), (1, 0), (0, -1)))
 
-      And("but should transforms back to its orginal shape")
+      And("but finally should transforms back to its orginal shape")
       assert(LivingWorld.tick(nextLivingWorldH) === original6h)
     }
   }
