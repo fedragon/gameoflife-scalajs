@@ -11,6 +11,8 @@ GameOfLifeFP
 
 [Installation instructions here](#installation-instructions)
 
+[CI test report is here](https://travis-ci.org/amsterdam-scala/Sjs-HTML5Canvas-GameOfLive#L714-L738)
+
 #### Conway's Game of Life - Functional Programmed in Scala.js
 
 A Scala.js implementation of Conway's Game of Life, a cellular automaton devised in 1970 by the British mathematician John Horton Conway. It is considered a zero-player or solitaire game because its evolution is determined by its initial state, requiring no further input from humans.
@@ -35,7 +37,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.102-b14, mixed mode)
     1. [Installing sbt on Windows](http://www.scala-sbt.org/release/docs/Installing-sbt-on-Windows.html) or
     1. [Installing sbt on Linux](http://www.scala-sbt.org/release/docs/Installing-sbt-on-Linux.html) or
     1. [Manual installation](http://www.scala-sbt.org/release/docs/Manual-Installation.html) (not recommended)
-1. (Optional ) To test if sbt is effective submit the `sbt sbtVersion` command. The response could look like as this:
+1. (Optional ) To test if sbt is effective submit the `sbt sbtVersion` command. The response could (after 50 notices of downloading) look like as this:
 ```
 [info] Set current project to fransdev (in build file:/C:/Users/FransDev/)
 [info] 0.13.13
