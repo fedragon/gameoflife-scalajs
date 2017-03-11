@@ -12,6 +12,8 @@ object LivingWorld {
 
   def apply(offset: Position[Int], pos: (Int, Int)*): LivingWorld = pos.map { case (x, y) => Position(x, y) + offset }.toSet
 
+  def apply(offset: Position[Int], set: LivingWorld): LivingWorld = set.map { case pos => pos + offset }.toSet
+
   def apply(pos: (Int, Int)*): LivingWorld = pos.map { case (x, y) => Position(x, y) }.toSet
 
   def convertPx2CellCoord(clickPos: Position[Int], origin: Position[Int]): Position[Int] = {
