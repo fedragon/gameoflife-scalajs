@@ -42,6 +42,15 @@ package object sjsgameoflive {
       interSectsArea(Position(0, 0).asInstanceOf[Position[P]], canvasPos, this + side, this)
     }
 
+    /**
+      * Checks if two squares intersects
+      *
+      * @param posB Position of the second square
+      * @param side side of both two squares
+      * @return True if a intersection occurs
+      */
+    def hasOverlap(posB: Position[P], side: P): Boolean = interSectsArea(this, this + side, posB, posB + side)
+
     /** Unary add operator e,g. (a, b) + n => (a + n, b + n) */
     def +(term: P) = Position(x + term, y + term)
 
@@ -55,20 +64,14 @@ package object sjsgameoflive {
     /**
       * Checks if two squares intersects
       *
-      * @param posB Position of the second square
-      * @param side side of both two squares
-      * @return True if a intersection occurs
-      */
-    def hasOverlap(posB: Position[P], side: P): Boolean = interSectsArea(this, this + side, posB, posB + side)
-
-    /**
-      * Checks if two squares intersects
-      *
-      * @param posB Position of the second square
+      * @param posB   Position of the second square
       * @param window dimensions of rectangular window
       * @return True if a intersection occurs
       */
     def hasOverlap(posB: Position[P], window: Position[P]): Boolean = interSectsArea(this, this + window, posB, posB + window)
+
+    /** Binary add operator for two coordinates */
+    def +(p: Position[P]) = Position(x + p.x, y + p.y)
 
     /**
       * Return the Moore neighborhood with the domain range of r
@@ -83,9 +86,6 @@ package object sjsgameoflive {
       val range = -r to r
       (for (x <- range; y <- range; if (x | y) != 0 || r == 0) yield Position(x, y)).map(_.asInstanceOf[Position[P]] + this).toSet
     }
-
-    /** Binary add operator for two coordinates */
-    def +(p: Position[P]) = Position(x + p.x, y + p.y)
   }
 
 }

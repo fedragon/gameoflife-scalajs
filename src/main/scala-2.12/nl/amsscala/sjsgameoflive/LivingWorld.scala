@@ -10,16 +10,16 @@ object LivingWorld {
     livingWorld += convertPx2CellCoord(clickPos, origin)
   }
 
+  def convertPx2CellCoord(clickPos: Position[Int], origin: Position[Int]): Position[Int] = {
+    val centered = clickPos - (origin + 5)
+    Position((centered.x / 10.0).round.toInt, (centered.y / 10.0).round.toInt)
+  }
+
   def apply(offset: Position[Int], pos: (Int, Int)*): LivingWorld = pos.map { case (x, y) => Position(x, y) + offset }.toSet
 
   def apply(offset: Position[Int], set: LivingWorld): LivingWorld = set.map { case pos => pos + offset }.toSet
 
   def apply(pos: (Int, Int)*): LivingWorld = pos.map { case (x, y) => Position(x, y) }.toSet
-
-  def convertPx2CellCoord(clickPos: Position[Int], origin: Position[Int]): Position[Int] = {
-    val centered = clickPos - (origin + 5)
-    Position((centered.x / 10.0).round.toInt, (centered.y / 10.0).round.toInt)
-  }
 
   def containedInRect(gs: LivingWorld, rect: Position[Int]): LivingWorld = gs.filter(_.hasOverlap(Position(0, 0), rect))
 
@@ -64,6 +64,7 @@ object LivingWorld {
 
     /**
       * Secondly, this function gives you all survivors.
+      *
       * @return all survivors
       */
     @inline

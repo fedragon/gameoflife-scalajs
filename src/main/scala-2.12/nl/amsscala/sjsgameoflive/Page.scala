@@ -81,9 +81,9 @@ trait Page {
     gs
   }
 
-  def center(cnvs: dom.html.Canvas): Position[Int] = Position(canvas.width / 2, canvas.height / 2)
-
   def canvasDim[D](cnvs: dom.html.Canvas): Position[D] = Position(cnvs.width, cnvs.height).asInstanceOf[Position[D]]
+
+  def center(cnvs: dom.html.Canvas): Position[Int] = Position(canvas.width / 2, canvas.height / 2)
 
   /** Convert the onload event of an img tag into a Future */
   def imageFuture(src: String): Future[dom.raw.HTMLImageElement] = {
