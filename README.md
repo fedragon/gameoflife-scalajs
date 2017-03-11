@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/amsterdam-scala/Sjs-HTML5Canvas-GameOfLive.svg?branch=master)](https://travis-ci.org/amsterdam-scala/Sjs-HTML5Canvas-GameOfLive)
+[![Build Status](https://travis-ci.org/amsterdam-scala/Sjs-HTML5Canvas-GameOfLife.svg?branch=master)](https://travis-ci.org/amsterdam-scala/Sjs-HTML5Canvas-GameOfLife)
 <img src="https://www.w3.org/html/logo/badge/html5-badge-h-css3-graphics-semantics.png" width="99" height="32" alt="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, and Semantics" title="HTML5 Powered with CSS3 / Styling, Graphics, 3D &amp; Effects, and Semantics">
 <img width="48" src="https://www.scala-js.org/assets/img/scala-js-logo.svg">
 [![Scala.js](https://www.scala-js.org/assets/badges/scalajs-0.6.14.svg)](https://www.scala-js.org)
@@ -7,11 +7,11 @@ GameOfLifeFP
 ============
 [A live demo here](https://goo.gl/90xuxl)
 
-[The very core of the code can be found here](https://github.com/amsterdam-scala/Sjs-HTML5Canvas-GameOfLive/blob/master/src/main/scala-2.12/nl/amsscala/sjsgameoflive/LivingWorld.scala#L42-L76)
+[The very core of the code can be found here](https://github.com/amsterdam-scala/Sjs-HTML5Canvas-GameOfLife/blob/master/src/main/scala-2.12/nl/amsscala/sjsgameoflive/LivingWorld.scala#L42-L76)
 
 [Installation instructions here](#installation-instructions)
 
-[CI test report is here](https://travis-ci.org/amsterdam-scala/Sjs-HTML5Canvas-GameOfLive#L714-L738)
+[CI test report is here](https://travis-ci.org/amsterdam-scala/Sjs-HTML5Canvas-GameOfLife#L714-L738)
 
 Tests are done on the following patterns:
 

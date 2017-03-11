@@ -1,5 +1,5 @@
 lazy val commonSettings = Seq(
-                name := "HTML5 canvas Game of Live",
+                name := "HTML5 canvas Game of Life",
              version := "0.1",
          description := "HTML5 Canvas Game of Life.",
         organization := "nl.amsscala",
