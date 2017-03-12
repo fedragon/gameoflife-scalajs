@@ -5,9 +5,9 @@
 
 GameOfLifeFP
 ============
-[A live demo here](https://goo.gl/90xuxl)
+[A demo here](https://goo.gl/7mmqb5)
 
-[The very core of the code can be found here](https://github.com/amsterdam-scala/Sjs-HTML5Canvas-GameOfLife/blob/master/src/main/scala-2.12/nl/amsscala/sjsgameoflive/LivingWorld.scala#L42-L76)
+[The very core of the code can be found here](https://github.com/amsterdam-scala/Sjs-HTML5Canvas-GameOfLife/blob/master/src/main/scala-2.12/nl/amsscala/sjsgameoflife/LivingWorld.scala#L42-L76)
 
 [Installation instructions here](#installation-instructions)
 
