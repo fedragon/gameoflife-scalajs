@@ -13,23 +13,22 @@ organizationHomepage := Some(url("http://www.meetup.com/amsterdam-scala/")),
       normalizedName := "main"
 
 // ** Scala dependencies **
-scalaVersion in ThisBuild := "2.12.1"
+scalaVersion in ThisBuild := "2.12.4"
 scalacOptions in ThisBuild ++= Seq("-unchecked", "-deprecation")
 scalacOptions in (Compile,doc) ++=
   Seq("-doc-root-content", baseDirectory.value + "/src/main/scala-2.12/root-doc.md", "-groups", "-implicits")
 
 libraryDependencies ++= Seq(
-  "com.lihaoyi"        %%% "scalatags"      % "0.6.3",
-  "org.scala-js"       %%% "scalajs-dom"    % "0.9.1",
-  "org.scalatest"      %%% "scalatest"      % "3.0.1" % "test"
+  "com.lihaoyi"        %%% "scalatags"      % "0.6.7",
+  "org.scala-js"       %%% "scalajs-dom"    % "0.9.5",
+  "org.scalatest"      %%% "scalatest"      % "3.0.5" % "test"
 )
 skip in packageJSDependencies := false // All JavaScript dependencies to be concatenated to a single file
 scalacOptions in (Compile,doc) ++= Seq("-doc-root-content", baseDirectory.value + "/src/main/scala-2.12/root-doc.md",
   "-groups", "-implicits")
 // ** Scala.js configuration **
 
-lazy val root: Project = (project in file(".")).enablePlugins(ScalaJSPlugin).settings(commonSettings: _*).
-  configure(InBrowserTesting.js)
+lazy val root: Project = (project in file(".")).enablePlugins(ScalaJSPlugin).settings(commonSettings: _*) //.configure(InBrowserTesting.js)
 
 // jsEnv in Test := new org.scalajs.jsenv.selenium.SeleniumJSEnv(org.scalajs.jsenv.selenium.Chrome())
 
@@ -54,5 +53,5 @@ if (sys.env.isDefinedAt("CI")) {
   println("[Info] Li Haoyi's workbench disabled ", sys.env.getOrElse("CI", "?"))
   Seq.empty
 } else {
-  refreshBrowsers <<= refreshBrowsers.triggeredBy(fastOptJS in Compile)
+  refreshBrowsers := (refreshBrowsers.triggeredBy(fastOptJS in Compile)).value
   enablePlugins(WorkbenchPlugin)}
